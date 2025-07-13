@@ -101,6 +101,15 @@
       display: flex;
       gap: 10px;
     }
+    .artist-image-sonata {
+  width: 100%;
+  height: 50%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  overflow: hidden;
+}
+
   </style>
 </head>
 <body>
@@ -122,11 +131,15 @@
       </div>
     </div>
     <div class="artist-card">
-      <img src="https://via.placeholder.com/300x250?text=Artist+3" alt="Artist 3" class="artist-image" />
-      <div class="artist-description">
-        <h3>Lil Sonata</h3>
-        <p>Fusing photography with digital art, Artist Three explores the boundaries between the real and the imagined.</p>
-      </div>
+  <div class="image-crop">
+    <img src="59E102AD-E284-41A5-98BA-EED0BEFA1802.JPG" alt="Artist 3" class="artist-image-sonata" />
+  </div>
+  <div class="artist-description">
+    <h3>Lil Sonata</h3>
+    <p>Lil Sonata is a multi instrumentalist, music producer, and rapper.</p>
+  </div>
+</div>
+
     </div>
   </div>
 
