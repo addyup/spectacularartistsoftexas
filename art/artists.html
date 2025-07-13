@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Artists Gallery + Pac‑Man</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: aquamarine;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .artist-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .artist-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .artist-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .artist-description {
+      padding: 15px;
+    }
+
+    .artist-description h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .artist-description p {
+      margin: 0;
+      color: #555;
+    }
+
+    #pacman-container {
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    #pacman {
+      background-color: black;
+      display: block;
+      margin: 20px auto;
+      width: 100%;
+      max-width: 600px;
+      height: 600px;
+    }
+
+    #startBtn, #restartBtn {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 10px;
+    }
+
+    #mobile-controls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #mobile-controls button {
+      margin: 5px;
+      padding: 15px 20px;
+      font-size: 20px;
+      border-radius: 10px;
+      border: none;
+      background-color: #222;
+      color: white;
+      cursor: pointer;
+    }
+
+    #mobile-controls div {
+      display: flex;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Featured Artists of Texas</h1>
+  <div class="gallery">
+    <div class="artist-card">
+      <img src="https://via.placeholder.com/300x250?text=Artist+1" alt="Artist 1" class="artist-image" />
+      <div class="artist-description">
+        <h3>Suzie Moon</h3>
+        <p>Known for bold strokes and vibrant color palettes, Artist One blends modern impressionism with classic themes.</p>
+      </div>
+    </div>
+    <div class="artist-card">
+      <img src="IMG_5498.jpeg" alt="Artist 2" class="artist-image" />
+      <div class="artist-description">
+        <h3 style="font-family: fantasy; color: purple;">Addy Up</h3>
+        <p>Specializing in HipHop, Up captures emotion through chaotic yet balanced compositions.</p>
+      </div>
+    </div>
+    <div class="artist-card">
+      <img src="https://via.placeholder.com/300x250?text=Artist+3" alt="Artist 3" class="artist-image" />
+      <div class="artist-description">
+        <h3>ThankYou Sonata</h3>
+        <p>Fusing photography with digital art, Artist Three explores the boundaries between the real and the imagined.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="pacman-container">
+    <h2>Play Pac‑Man!</h2>
+    <canvas id="pacman"></canvas>
+    <button id="startBtn">START</button>
+    <button id="restartBtn" style="display: none;">RESTART</button>
+  </div>
+
+  <!-- On-Screen Arrow Controls (only visible during play) -->
+  <div id="mobile-controls">
+    <button data-dir="U">↑</button>
+    <div>
+      <button data-dir="L">←</button>
+      <button data-dir="D">↓</button>
+      <button data-dir="R">→</button>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("pacman");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = Math.min(window.innerWidth - 40, 600);
+    canvas.height = canvas.width;
+
+    const gridSize = 20;
+    const cols = Math.floor(canvas.width / gridSize);
+    const rows = Math.floor(canvas.height / gridSize);
+
+    let maze = [];
+    let dots = [];
+    let pac = { x: 1, y: 1, dir: null };
+    let ghosts = [];
+    let gameRunning = false;
+    let gameInterval;
+
+    function generateMaze() {
+      maze = Array(rows).fill().map(() => Array(cols).fill(1));
+      function carve(x, y) {
+        const dirs = [[0,-2],[0,2],[2,0],[-2,0]];
+        maze[y][x] = 0;
+        shuffle(dirs);
+        for (const [dx, dy] of dirs) {
+          const nx = x + dx, ny = y + dy;
+          if (ny > 0 && ny < rows-1 && nx > 0 && nx < cols-1 && maze[ny][nx] === 1) {
+            maze[ny][nx] = 0;
+            maze[y + dy/2][x + dx/2] = 0;
+            carve(nx, ny);
+          }
+        }
+      }
+      carve(1,1);
+
+      dots = [];
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          if (maze[y][x] === 0 && !(x === 1 && y === 1)) {
+            dots.push({ x, y, eaten: false });
+          }
+        }
+      }
+    }
+
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+
+    function drawGrid() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          if (maze[y][x] === 1) {
+            ctx.fillStyle = "#00008B";
+            ctx.fillRect(x * gridSize, y * gridSize, gridSize, gridSize);
+          }
+        }
+      }
+
+      dots.forEach(dot => {
+        if (!dot.eaten) {
+          ctx.fillStyle = "white";
+          ctx.beginPath();
+          ctx.arc(dot.x * gridSize + gridSize/2, dot.y * gridSize + gridSize/2, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      });
+
+      ctx.fillStyle = "yellow";
+      ctx.beginPath();
+      ctx.arc(pac.x * gridSize + gridSize/2, pac.y * gridSize + gridSize/2, gridSize / 2 - 2, 0.25 * Math.PI, 1.75 * Math.PI);
+      ctx.lineTo(pac.x * gridSize + gridSize/2, pac.y * gridSize + gridSize/2);
+      ctx.fill();
+
+      ghosts.forEach(g => {
+        ctx.fillStyle = g.color;
+        ctx.beginPath();
+        ctx.arc(g.x * gridSize + gridSize/2, g.y * gridSize + gridSize/2, gridSize / 2 - 2, 0, 2 * Math.PI);
+        ctx.fill();
+      });
+    }
+
+    function movePacman() {
+      let { x, y } = pac;
+      let nx = x, ny = y;
+      switch (pac.dir) {
+        case "U": ny--; break;
+        case "D": ny++; break;
+        case "L": nx--; break;
+        case "R": nx++; break;
+      }
+      if (maze[ny] && maze[ny][nx] === 0) {
+        pac.x = nx;
+        pac.y = ny;
+      }
+
+      dots.forEach(dot => {
+        if (!dot.eaten && dot.x === pac.x && dot.y === pac.y) {
+          dot.eaten = true;
+        }
+      });
+    }
+
+    function
+moveGhosts() {
+ghosts.forEach(g => {
+g.delay++;
+if (g.delay % 10 !== 0) return;
+
+    const dirs = [
+      { dx: 0, dy: -1 },
+      { dx: 0, dy: 1 },
+      { dx: -1, dy: 0 },
+      { dx: 1, dy: 0 }
+    ];
+    shuffle(dirs);
+    for (let dir of dirs) {
+      const nx = g.x + dir.dx, ny = g.y + dir.dy;
+      if (maze[ny] && maze[ny][nx] === 0) {
+        g.x = nx;
+        g.y = ny;
+        break;
+      }
+    }
+  });
+}
+
+function checkCollision() {
+  return ghosts.some(g => g.x === pac.x && g.y === pac.y);
+}
+
+function endGame(message) {
+  gameRunning = false;
+  clearInterval(gameInterval);
+  ctx.fillStyle = 'rgba(0,0,0,0.7)';
+  ctx.font = 'bold 48px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(message, canvas.width/2, canvas.height/2);
+
+  // Hide mobile controls
+  document.getElementById("mobile-controls").style.display = "none";
+  // Show restart button
+  document.getElementById("restartBtn").style.display = "inline-block";
+}
+
+function gameLoop() {
+  if (!gameRunning) return;
+  movePacman();
+  moveGhosts();
+  drawGrid();
+
+  if (checkCollision()) {
+    endGame("GAME OVER");
+  } else if (dots.every(dot => dot.eaten)) {
+    endGame("YOU WIN!");
+  }
+}
+
+document.addEventListener("keydown", e => {
+  const dirMap = { ArrowUp: "U", ArrowDown: "D", ArrowLeft: "L", ArrowRight: "R" };
+  if (dirMap[e.key]) {
+    pac.dir = dirMap[e.key];
+  }
+});
+
+// Mobile arrow buttons control
+document.getElementById("mobile-controls").addEventListener("click", e => {
+  if (e.target.tagName === "BUTTON" && gameRunning) {
+    const dir = e.target.getAttribute("data-dir");
+    if (dir) pac.dir = dir;
+  }
+});
+
+function startGame() {
+  generateMaze();
+  pac = { x: 1, y: 1, dir: null };
+  ghosts = [
+    { x: cols - 2, y: 1, dir: null, color: 'red', delay: 0 },
+    { x: 1, y: rows - 2, dir: null, color: 'cyan', delay: 0 }
+  ];
+  gameRunning = true;
+  drawGrid();
+  clearInterval(gameInterval);
+  gameInterval = setInterval(gameLoop, 200);
+
+  document.getElementById("mobile-controls").style.display = "flex";
+  document.getElementById("startBtn").style.display = "none";
+  document.getElementById("restartBtn").style.display = "none";
+}
+
+document.getElementById("startBtn").addEventListener("click", startGame);
+
+document.getElementById("restartBtn").addEventListener("click", startGame);
+</script> </body> </html>
