@@ -151,6 +151,10 @@
       <button data-dir="R">→</button>
     </div>
   </div>
+<h1>List of Names</h1>
+  <ul id="names-list"></ul>
+
+  
 
   <script>
     const canvas = document.getElementById("pacman");
@@ -196,6 +200,8 @@
         }
       }
     }
+
+
 
     function shuffle(arr) {
       for (let i = arr.length - 1; i > 0; i--) {
@@ -349,4 +355,22 @@ function startGame() {
 document.getElementById("startBtn").addEventListener("click", startGame);
 
 document.getElementById("restartBtn").addEventListener("click", startGame);
+
+// Make a GET request to your Spring Boot endpoint
+    fetch('http://localhost:8080/listOfNames')
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json(); // Expecting a JSON array like ["Bob Barker", "Timmy Tommy"]
+      })
+      .then(names => {
+        const ul = document.getElementById('names-list');
+        names.forEach(name => {
+          const li = document.createElement('li');
+          li.textContent = name;
+          ul.appendChild(li);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching names:', error);
+      });
 </script> </body> </html>

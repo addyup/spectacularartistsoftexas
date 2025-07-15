@@ -5,14 +5,24 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 public class SoundStacksController {
 
+  @CrossOrigin(origins = "*")
+  @GetMapping("/middleWay/{a}/{b}")
+  public int[] middleWay(@PathVariable int[] a,@PathVariable int[] b) {
+  return new int[] {a[1], b[1]};
+}
+
+    @CrossOrigin(origins = "*")
     @GetMapping("/listOfNames")
     public static List<String> namesInAList() {
         return Arrays.asList(
