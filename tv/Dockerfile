@@ -1,6 +1,6 @@
 # Set the working directory in the container
 
-WORKDIR /tv
+
 
 # Copy the JAR file into the container
 COPY tv-0.0.1-SNAPSHOT.jar app.jar
