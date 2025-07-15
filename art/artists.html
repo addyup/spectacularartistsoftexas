@@ -357,7 +357,7 @@ document.getElementById("startBtn").addEventListener("click", startGame);
 document.getElementById("restartBtn").addEventListener("click", startGame);
 
 // Make a GET request to your Spring Boot endpoint
-    fetch('http://localhost:8080/listOfNames')
+    fetch('https://spectacularartistsoftexas-1.onrender.com/listOfNames')
       .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.json(); // Expecting a JSON array like ["Bob Barker", "Timmy Tommy"]
