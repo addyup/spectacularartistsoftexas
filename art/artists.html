@@ -162,31 +162,59 @@
       <th>Genre</th>
     </tr>
   </thead>
-  <tbody id="musician-table-body">
+  <!-- <tbody id="musician-table-body">
     <!-- Rows will be added here by JS -->
-  </tbody>
+  </tbody> -->
+  <tbody>
+        <tr>
+          <td>Amanda Victoria</td>
+          <td>Atlas</td>
+          <td>Country Pop</td>
+        </tr>
+        <tr>
+          <td>Tommy Luke</td>
+          <td>McFlys Pub</td>
+          <td>Folk Country</td>
+        </tr>
+        <tr>
+          <td>TRVR?</td>
+          <td>Atlas/Tulips</td>
+          <td>POP</td>
+        </tr>
+        <tr>
+          <td>Lil Sonata</td>
+          <td>Royal Lane Studios</td>
+          <td>HipHop/Rap</td>
+        </tr>
+        <tr>
+          <td>Addy Up</td>
+          <td>McFlys Pub</td>
+          <td>HipHop/Rap</td>
+        </tr>
+      </tbody>
+  
 </table>
    
 
   
 
   <script>
-    fetch('https://spectacularartistsoftexas-1.onrender.com/api/musicians')
-    .then(response => response.json())
-    .then(data => {
-      const tbody = document.getElementById('musician-table-body');
-      data.forEach(musician => {
-        const row = document.createElement('tr');
+    // fetch('https://spectacularartistsoftexas-1.onrender.com/api/musicians')
+    // .then(response => response.json())
+    // .then(data => {
+    //   const tbody = document.getElementById('musician-table-body');
+    //   data.forEach(musician => {
+    //     const row = document.createElement('tr');
 
-        row.innerHTML = `
-          <td>${musician.name}</td>
-          <td>${musician.venue}</td>
-          <td>${musician.genre}</td>
-        `;
-        tbody.appendChild(row);
-      });
-    })
-    .catch(error => console.error('Error loading musicians:', error));
+    //     row.innerHTML = `
+    //       <td>${musician.name}</td>
+    //       <td>${musician.venue}</td>
+    //       <td>${musician.genre}</td>
+    //     `;
+    //     tbody.appendChild(row);
+    //   });
+    // })
+    // .catch(error => console.error('Error loading musicians:', error));
 
     const canvas = document.getElementById("pacman");
     const ctx = canvas.getContext("2d");
