@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@RequestMapping("/api/musicians")
 public class SoundStacksController {
 
   @CrossOrigin(origins = "*")
@@ -21,6 +23,16 @@ public class SoundStacksController {
   public int[] middleWay(@PathVariable int[] a,@PathVariable int[] b) {
   return new int[] {a[1], b[1]};
 }
+@GetMapping
+    public List<Musician> getMusicians() {
+        return List.of(
+            new Musician("Amanda Victoria", "Atlas", "Country Pop"),
+            new Musician("Tommy Luke", "McFlys Pub", "Folk Country"),
+            new Musician("TRVR?", "Atlas/Tulips", "POP"),
+            new Musician("Lil Sonata", "Royal Lane Studios", "HipHop/Rap"),
+            new Musician("Addy Up", "McFlys Pub", "HipHop/Rap")
+        );
+    }
 
     @CrossOrigin(origins = "*")
     @GetMapping("/listOfNames")
