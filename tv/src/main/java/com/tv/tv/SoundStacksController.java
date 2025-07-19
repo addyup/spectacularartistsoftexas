@@ -100,4 +100,9 @@ public int bigDiff(int[] nums) {
   return max - min;
 }
 
+public double[] reciprocalVal(double numberToConvertIntoAReciprocal) {
+  return new double []{numberToConvertIntoAReciprocal / numberToConvertIntoAReciprocal , numberToConvertIntoAReciprocal};
+}
+
+
 }
