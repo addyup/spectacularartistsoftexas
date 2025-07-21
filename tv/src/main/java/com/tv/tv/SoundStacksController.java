@@ -23,9 +23,10 @@ public class SoundStacksController {
   public int[] middleWay(@PathVariable int[] a,@PathVariable int[] b) {
   return new int[] {a[1], b[1]};
 }
-  @GetMapping
+
   @CrossOrigin(origins = "*")
-    public List<Musician> getMusicians() {
+  @GetMapping
+  public List<Musician> getMusicians() {
         return List.of(
             new Musician("Amanda Victoria", "Atlas", "Country Pop"),
             new Musician("Tommy Luke", "McFlys Pub", "Folk Country"),
