@@ -24,8 +24,9 @@ public class SoundStacksController {
   return new int[] {a[1], b[1]};
 }
 
-  @CrossOrigin(origins = "*")
+  
   @GetMapping
+  @CrossOrigin(origins = "*")
   public List<Musician> getMusicians() {
         return List.of(
             new Musician("Amanda Victoria", "Atlas", "Country Pop"),
