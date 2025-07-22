@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/musicians")
 public class SoundStacksController {
@@ -28,7 +29,6 @@ public class SoundStacksController {
 
   
   @GetMapping
-  @CrossOrigin(origins = "*")
   public List<Musician> getMusicians() {
         return List.of(
             new Musician("Amanda Victoria", "Atlas", "Country Pop"),
@@ -41,7 +41,6 @@ public class SoundStacksController {
         );
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/listOfNames")
     public static List<String> namesInAList() {
         return Arrays.asList(
@@ -112,7 +111,6 @@ public double[] reciprocalVal(double numberToConvertIntoAReciprocal) {
 }
 
 @GetMapping("divorce")
-@CrossOrigin(origins = "*")
 public String[] USLegalProEfileForDivorceTexas() throws Exception{
 
   Document doc = Jsoup.connect("https://uslegalpro.com").get();
