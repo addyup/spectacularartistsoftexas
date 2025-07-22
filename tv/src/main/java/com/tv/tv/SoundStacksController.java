@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -107,6 +109,21 @@ public int bigDiff(int[] nums) {
 
 public double[] reciprocalVal(double numberToConvertIntoAReciprocal) {
   return new double []{numberToConvertIntoAReciprocal / numberToConvertIntoAReciprocal , numberToConvertIntoAReciprocal};
+}
+
+@GetMapping("divorce")
+public String[] USLegalProEfileForDivorceTexas() throws Exception{
+
+  Document doc = Jsoup.connect("https://uslegalpro.com").get();
+  Elements links = doc.select("a.stretched-link.card-title.fw-bold[href*=\"states\"]");
+String[] clickables = new String[links.size()];
+int counter = 0;
+  for (Element link : links) {
+    clickables[counter] = "https://uslegalpro.com" + link.attr("href");
+    counter++;
+        }
+
+  return clickables;
 }
 
 
