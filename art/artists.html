@@ -8,7 +8,7 @@
   body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: aquamarine;
+    background-color: red;
     padding: 20px;
   }
 
@@ -144,6 +144,8 @@
  <h1 id="fontForCommon">Efiling Solutions</h1>
 
 <div class="container" id="cardContainer"></div>
+
+<div class="container" id="cardContainer"></div>
   <h1 id="fontForCommon" >Featured Artists of Texas</h1>
   <div class="gallery">
     <div class="artist-card">
@@ -173,7 +175,6 @@
     <button id="restartBtn" style="display: none;">RESTART</button>
   </div>
 
-<div class="container" id="cardContainer"></div>
   <!-- On-Screen Arrow Controls (only visible during play) -->
   <div id="mobile-controls">
     <button data-dir="U">↑</button>
@@ -186,18 +187,53 @@
 <h1>List of Artists</h1>
 <h2 id="fontForCommon">Play PacMan while it loads!</h2>
 
-<table border="1">
+<table style="border-collapse: collapse;" border="1">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Open Mic Commonly Attended</th>
+      <th>Musician</th>
+      <th>Venue</th>
       <th>Genre</th>
     </tr>
   </thead>
-  <tbody id="musician-table-body">
-    <!-- Rows will be added here dynamically -->
+  <tbody>
+    <tr>
+      <td id="fontForCommon">Amanda Victoria</td>
+      <td>Atlas</td>
+      <td>Country Pop</td>
+    </tr>
+    <tr>
+      <td id="fontForCommon">Tommy Luke</td>
+      <td>McFlys Pub</td>
+      <td>Folk Country</td>
+    </tr>
+    <tr>
+      <td id="fontForCommon">TRVR?</td>
+      <td>Atlas/Tulips</td>
+      <td>POP</td>
+    </tr>
+    <tr>
+      <td id="fontForCommon">Kayley Ryan</td>
+      <td>Atlas/McFlys Pub</td>
+      <td>StarWars</td>
+    </tr>
+    <tr>
+      <td id="fontForCommon">Lil Sonata</td>
+      <td>Royal Lane Studios</td>
+      <td>HipHop/Rap</td>
+    </tr>
+    <tr>
+      <td id="fontForCommon">Addy Up</td>
+      <td>McFlys Pub</td>
+      <td>HipHop/Rap</td>
+    </tr>
+    <tr>
+      <td id="fontForCommon">Eric the Bourassa</td>
+      <td>Atlas</td>
+      <td>Future Rock</td>
+    </tr>
   </tbody>
 </table>
+
    
   <h1>Founding Fathers</h1>
   <table>
@@ -516,28 +552,4 @@ document.getElementById("restartBtn").addEventListener("click", startGame);
     //   .catch(error => {
     //     console.error('Error fetching names:', error);
     //   }); 
-    fetch('https://spectacularartistsoftexas-1.onrender.com/api/musicians') // adjust port if needed
-    .then(response => response.json())
-    .then(data => {
-      const tableBody = document.getElementById('musician-table-body');
-      data.forEach(musician => {
-        const row = document.createElement('tr');
-
-        const nameCell = document.createElement('td');
-        nameCell.textContent = musician.name;
-        nameCell.id = 'fontForCommon'; // ✅ Set the id here
-        row.appendChild(nameCell);
-
-        const micCell = document.createElement('td');
-        micCell.textContent = musician.venue;
-        row.appendChild(micCell);
-
-        const genreCell = document.createElement('td');
-        genreCell.textContent = musician.genre;
-        row.appendChild(genreCell);
-
-        tableBody.appendChild(row);
-      });
-    })
-    .catch(error => console.error('Error fetching musicians:', error));
-</script> </body> </html>
+    </script> </body> </html>
