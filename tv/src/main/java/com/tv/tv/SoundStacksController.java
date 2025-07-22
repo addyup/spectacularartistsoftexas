@@ -112,6 +112,7 @@ public double[] reciprocalVal(double numberToConvertIntoAReciprocal) {
 }
 
 @GetMapping("divorce")
+@CrossOrigin(origins = "*")
 public String[] USLegalProEfileForDivorceTexas() throws Exception{
 
   Document doc = Jsoup.connect("https://uslegalpro.com").get();
