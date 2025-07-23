@@ -10,3 +10,8 @@ EXPOSE 8080
 
 # Run the application
 CMD ["java", "-jar", "app.jar"]
+
+LABEL "com.tv.tv"="=MusicalityAndEfile"
+LABEL com.tv.tv="foo"
+LABEL version="1.0"
+LABEL description="In our new website, we're a growing commission based service advertiser, who take pride in history, and musicality."
