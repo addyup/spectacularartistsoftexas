@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/musicians")
 public class SoundStacksController {
+
+@Autowired
+private static Document doc;
+
+@Autowired
+private static String[] listed;
+
+  @GetMapping("betterHealth")
+  public String[] soundStacksHealth() throws Exception{
+     doc = Jsoup.connect("https://www.betterhealth.vic.gov.au/health/healthyliving/alcohol").get();
+     Element targetDiv = doc.selectFirst(".rpl-markup__inner");
+
+            String[] listedI = new String[targetDiv.childrenSize()];
+     if (targetDiv != null) {
+            for(int i = 0; i < targetDiv.childrenSize(); i++) {
+              listedI[i] = targetDiv.text();
+            }
+        } else {
+            System.out.println("No matching div found.");
+        }
+
+
+return listedI;
+      }
 
   @CrossOrigin(origins = "*")
   @GetMapping("/middleWay/{a}/{b}")
@@ -80,6 +105,9 @@ public int[] reverse3(int[] nums) {
   return reversed;
 }
 
+//       Given an array of strings, and a char, write a method that will take these as argument, and return the number of times a char is found in the whole collection. For example:
+// ["abc", "hello", "world wide web"] and 'l' will return 3.
+
 public Object[] reverse3AndcommonEnd(int[] a, int[] b, int[] nums) 
 {
     boolean val = false;
@@ -113,16 +141,16 @@ public double[] reciprocalVal(double numberToConvertIntoAReciprocal) {
 @GetMapping("divorce")
 public String[] USLegalProEfileForDivorceTexas() throws Exception{
 
-  Document doc = Jsoup.connect("https://uslegalpro.com").get();
+  doc = Jsoup.connect("https://uslegalpro.com").get();
   Elements links = doc.select("a.stretched-link.card-title.fw-bold[href*=\"states\"]");
-String[] clickables = new String[links.size()];
+this.listed = new String[links.size()];
 int counter = 0;
   for (Element link : links) {
-    clickables[counter] = "https://uslegalpro.com" + link.attr("href");
+    this.listed[counter] = "https://uslegalpro.com" + link.attr("href");
     counter++;
         }
 
-  return clickables;
+  return this.listed;
 }
 
 
