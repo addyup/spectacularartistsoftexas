@@ -29,7 +29,6 @@ private static Document doc;
 private static String[] listed;
 
 
-  @CrossOrigin(origins = "*")
   @GetMapping("betterHealth")
   public String[] soundStacksHealth() throws Exception{
      doc = Jsoup.connect("https://www.betterhealth.vic.gov.au/health/healthyliving/alcohol").get();
