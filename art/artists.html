@@ -153,7 +153,20 @@
   <div class="health">
     <h1 id="fontForCommon">Facts from the Better Health Channel Victoria</h1>
     <h1 id="fontForCommon">About Alcohol</h2>
-      <h3 id="fontForCommon">Coming Soon...</h3>
+      <div class="container mt-5">
+  <h2>Better Health Topics</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Topic</th>
+      </tr>
+    </thead>
+    <tbody id="betterhealth-table-body">
+      <!-- Table rows will be inserted here -->
+    </tbody>
+  </table>
+</div>
   </div> <div class="space"></div>
   <img class="imgEllumCenter" src="Ellums garden logo white.png" alt="White Logo">
   <img class="imgEllumCenter" src="Ellums garden logo black.jpg" alt="Black Logo">
@@ -345,6 +358,28 @@
   </table>
 
   <script>
+
+     fetch('https://spectacularartistsoftexas-1.onrender.com/api/betterhealth')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json(); // Assuming your endpoint returns a JSON array like ["Exercise", "Sleep", ...]
+    })
+    .then(data => {
+      const tableBody = document.getElementById("betterhealth-table-body");
+
+      data.forEach((item, index) => {
+        const row = `<tr>
+          <td>${index + 1}</td>
+          <td>${item}</td>
+        </tr>`;
+        tableBody.innerHTML += row;
+      });
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+    });
 
     fetch('https://spectacularartistsoftexas-1.onrender.com/api/divorce')
       .then(response => response.json())
