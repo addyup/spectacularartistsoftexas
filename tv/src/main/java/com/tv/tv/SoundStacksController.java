@@ -28,7 +28,7 @@ private static Document doc;
 @Autowired
 private static String[] listed;
 
-`
+
   @CrossOrigin(origins = "*")
   @GetMapping("betterHealth")
   public String[] soundStacksHealth() throws Exception{
