@@ -39,9 +39,7 @@ private static String[] listed;
             for(int i = 0; i < targetDiv.childrenSize(); i++) {
               listedI[i] = targetDiv.text();
             }
-        } else {
-            System.out.println("No matching div found.");
-        }
+        } 
 
 
 return listedI;
