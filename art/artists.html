@@ -399,7 +399,27 @@
       });
     
 
-    const canvas = document.getElementById("pacman");
+   
+// Make a GET request to your Spring Boot endpoint
+    // fetch('https://spectacularartistsoftexas-1.onrender.com/listOfNames')
+    //   .then(response => {
+    //     if (!response.ok) throw new Error('Network response was not ok');
+    //     return response.json(); // Expecting a JSON array like ["Bob Barker", "Timmy Tommy"]
+    //   })
+    //   .then(names => {
+    //     const ul = document.getElementById('names-list');
+    //     names.forEach(name => {
+    //       const li = document.createElement('li');
+    //       li.textContent = name;
+    //       ul.appendChild(li);
+    //     });
+    //   })
+    //   .catch(error => {
+    //     console.error('Error fetching names:', error);
+    //   }); 
+    </script> 
+    <script class="pacman">
+       const canvas = document.getElementById("pacman");
     const ctx = canvas.getContext("2d");
 
     canvas.width = Math.min(window.innerWidth - 40, 600);
@@ -597,22 +617,5 @@ function startGame() {
 document.getElementById("startBtn").addEventListener("click", startGame);
 
 document.getElementById("restartBtn").addEventListener("click", startGame);
-
-// Make a GET request to your Spring Boot endpoint
-    // fetch('https://spectacularartistsoftexas-1.onrender.com/listOfNames')
-    //   .then(response => {
-    //     if (!response.ok) throw new Error('Network response was not ok');
-    //     return response.json(); // Expecting a JSON array like ["Bob Barker", "Timmy Tommy"]
-    //   })
-    //   .then(names => {
-    //     const ul = document.getElementById('names-list');
-    //     names.forEach(name => {
-    //       const li = document.createElement('li');
-    //       li.textContent = name;
-    //       ul.appendChild(li);
-    //     });
-    //   })
-    //   .catch(error => {
-    //     console.error('Error fetching names:', error);
-    //   }); 
-    </script> </body> </html>
+</script>
+    </body> </html>
