@@ -17,7 +17,7 @@ public class SoulSoundsController {
 private static Document doc;
 
      @GetMapping("/alcohol")
-     @CrossOrigin(origins = "https://spectacularartistsoftexas.netlify.app/artists.html")
+     @CrossOrigin(origins = "https://spectacularartistsoftexas.netlify.app")
   public String[] soundStacksHealth() throws Exception{
      doc = Jsoup.connect("https://www.betterhealth.vic.gov.au/health/healthyliving/alcohol").get();
      Element targetDiv = doc.selectFirst(".rpl-markup__inner");
