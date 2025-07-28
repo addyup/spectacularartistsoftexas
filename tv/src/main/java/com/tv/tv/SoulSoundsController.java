@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+// @author Adwait Uprety
+
 @RestController
 @RequestMapping("/health")
-// @author Adwait Uprety
 public class SoulSoundsController {
 
     @Autowired

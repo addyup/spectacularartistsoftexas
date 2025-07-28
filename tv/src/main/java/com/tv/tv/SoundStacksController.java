@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://spectacularartistsoftexas.netlify.app")
 @RestController
 @RequestMapping("/api")
 public class SoundStacksController {
@@ -29,23 +29,6 @@ private static Document doc;
 private static String[] listed;
 
 
-  @GetMapping("betterHealth")
-  public String[] soundStacksHealth() throws Exception{
-     doc = Jsoup.connect("https://www.betterhealth.vic.gov.au/health/healthyliving/alcohol").get();
-     Element targetDiv = doc.selectFirst(".rpl-markup__inner");
-
-            String[] listedI = new String[targetDiv.childrenSize()];
-     if (targetDiv != null) {
-            for(int i = 0; i < targetDiv.childrenSize(); i++) {
-              listedI[i] = targetDiv.text();
-            }
-        } 
-
-
-return listedI;
-      }
-
-  @CrossOrigin(origins = "*")
   @GetMapping("/middleWay/{a}/{b}")
   public int[] middleWay(@PathVariable int[] a,@PathVariable int[] b) {
   return new int[] {a[1], b[1]};
@@ -73,7 +56,7 @@ return listedI;
         );
     }
 
-    @PostMapping("tvByGenre")
+    @PostMapping("/tvByGenre")
     public static String tobereakdownIMDB(@RequestBody String ex) {
 
         try{
@@ -137,7 +120,7 @@ public double[] reciprocalVal(double numberToConvertIntoAReciprocal) {
   return new double []{numberToConvertIntoAReciprocal / numberToConvertIntoAReciprocal , numberToConvertIntoAReciprocal};
 }
 
-@GetMapping("divorce")
+@GetMapping("/divorce")
 public String[] USLegalProEfileForDivorceTexas() throws Exception{
 
   doc = Jsoup.connect("https://uslegalpro.com").get();
