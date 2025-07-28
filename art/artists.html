@@ -152,7 +152,7 @@
   <img class="imgEllumCenter" src="unnamed.png" alt="Unnamed Image">
    <div class="space"></div>
  
-  </div> <div class="space"></div>
+   <div class="space"></div>
   <img class="imgEllumCenter" src="Ellums garden logo white.png" alt="White Logo">
   <img class="imgEllumCenter" src="Ellums garden logo black.jpg" alt="Black Logo">
 
@@ -179,7 +179,6 @@
 
  <h1 id="fontForCommon">Efiling Solutions</h1>
 
-<div class="container" id="cardContainer"></div>
 
 <div class="container" id="cardContainer"></div>
   <h1 id="fontForCommon" >Featured Artists of Texas</h1>
@@ -348,7 +347,8 @@
     <td>${data[0]}</td>
   </tr>`;
   tableBody.innerHTML += row;
-}
+}})
+  .catch(error => console.error("Health data fetch error:", error));
 
     fetch('https://spectacularartistsoftexas-1.onrender.com/api/divorce')
       .then(response => response.json())
@@ -584,6 +584,7 @@ function startGame() {
 document.getElementById("startBtn").addEventListener("click", startGame);
 
 document.getElementById("restartBtn").addEventListener("click", startGame);
+    
 </script>
  <div class="health">
       <div class="container mt-5">
