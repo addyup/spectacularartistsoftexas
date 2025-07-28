@@ -58,3 +58,35 @@ window.addEventListener('keydown', e => {
 
 // Generate notes every second
 setInterval(createNote, 1000);
+
+// Mobile button support
+const buttons = document.querySelectorAll('#mobile-controls button');
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    const key = parseInt(button.getAttribute('data-key'));
+    handleNoteHit(key);
+  });
+});
+
+// Shared note-hit logic
+function handleNoteHit(key) {
+  const lane = document.querySelector(`.lane[data-key="${key}"]`);
+  if (!lane) return;
+
+  const note = lane.querySelector('.note');
+  if (note) {
+    const top = parseInt(note.style.top);
+    if (top > 340 && top < 390) {
+      score += 10;
+      playSound();
+      lane.removeChild(note);
+    }
+  }
+  scoreDisplay.textContent = `Score: ${score}`;
+}
+
+// Update keyboard event to use shared function
+window.addEventListener('keydown', e => {
+  handleNoteHit(e.keyCode);
+});

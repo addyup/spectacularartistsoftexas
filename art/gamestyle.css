@@ -35,3 +35,28 @@ body {
   left: 10px;
   border-radius: 5px;
 }
+
+#mobile-controls {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#mobile-controls button {
+  width: 60px;
+  height: 60px;
+  font-size: 1.5em;
+  border: none;
+  border-radius: 10px;
+  background: #444;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px #222;
+}
+
+#mobile-controls button:active {
+  background: #666;
+  box-shadow: 0 2px #111;
+  transform: translateY(2px);
+}
