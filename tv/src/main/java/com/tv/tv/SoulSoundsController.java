@@ -35,5 +35,38 @@ private static Document doc;
 
 return listedI;
       }
+
+      public int scoresAverage(int[] scores) {
+        int middle = scores.length / 2;
+        int avg1 = average(scores, 0, middle - 1);
+        int avg2 = average(scores, middle, scores.length - 1);
+
+        return Math.max(avg1, avg2);
+      }
+
+      public int average(int[] scores, int start, int end) {
+        int sum = 0;
+        for(int i = start; i <= end; i++) {
+          sum += scores[i];
+        }
+        return sum / (end - start + 1);
+      }
+
+      
+      //first collect data 
+      // Fathers Hands (Calculated Blooming Group) Approved 3 Pending 1 Declined 2
+      // WhenBTwannaSeeYa Approved 1 Pending 2 Declined 2
+      // Soul Feed Approved 1 Pending 0 Declined 3
+      // Celebrate Approved 0 Pending 2 Declined 3
+      // 4 quarters in my pocket Approved 2 Pending 1 Declined 5
+      // Love Yourz Approved 2 Pending 0 Declined 7
+      // Video Games Approved 0 Pending 0 Declined 1
+      // DODO BIRD Approved 3 Pending 0 Declined 0
+      // Thunderblight Ganon Going Down Approved 3 Pending 0 Declined 0
+      // Pray Approved 1 Pending 0 Declined 1
+      // hella dreams Approved 0 Pending 0 Declined 3
+      // Self Approved 1 Pending 0 Declined 3
+      // RISHTA WAY Approved 0 Pending 0 Declined 1
+
     
 }
