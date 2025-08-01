@@ -150,12 +150,21 @@
   height: 4in;
   z-index: 1000; /* Ensures it's on top */
 }
-  .full-width-container {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
 </style>
 
 </head>
@@ -164,16 +173,15 @@
 
 <img src="SVG-01.svg" id="corner-logo" alt="Logo">
 
-<h1 id="fontForCommon">Songs</h1>
-<div id="player" class="full-width-container"></div>
-<script src="https://www.youtube.com/watch?v=tudw6JTdxfE&list=OLAK5uy_mDFUSOdGxAH986R9MxqkylqUwK0v-aGeM"></script>
-<script>
-  function onYouTubeIframeAPIReady() {
-    new YT.Player('player', {
-      videoId: 'M7lc1UVf-VE'
-    });
-  }
-</script>
+<div class="video-cotainer">
+<iframe width="560" height="315"
+    src="https://www.youtube.com/embed/tudw6JTdxfE?list=OLAK5uy_mDFUSOdGxAH986R9MxqkylqUwK0v-aGeM"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard‑write; encrypted‑media; gyroscope; picture‑in‑picture"
+    allowfullscreen>
+</iframe>
+</div>
 
     
 
