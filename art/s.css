@@ -161,11 +161,23 @@ h1 {
   background-color: #f3e8ff; /* Light lavender/purple */
 }
 
-.table-purple-stripes thead th:hover {
-  background-color: #e0c9ff; /* Slightly darker on hover */
+.table-purple-stripes thead th {
+    background-color: #e0c9ff;
+  color: #ff4d4d; /* Light orange text */
 }
 
-.table-purple-stripes thead th {
-  color: #4b0082; /* Indigo text color for header cells */
+.table-purple-stripes thead th:hover {
+  background-color: #e0c9ff; /* Slightly darker purple on hover */
+  color: #ff4d4d; /* Maintain light orange on hover */
+}
+
+.table-orange-header thead th {
+  background-color: #3620c5;
+  color: #ffffff;
+}
+
+.table-orange-header thead th:hover {
+  background-color: #4b35d6;
+  color: #8bb5e6;
 }
   
