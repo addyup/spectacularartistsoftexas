@@ -15,9 +15,62 @@
 <link rel="stylesheet" href="s.css">
 <body class="bg-light">
 
+  
+
 <div style="display: flex; justify-content: center; align-items: center;">
   <img src="SVG-01.svg" id="corner-logo" alt="Logo">
 </div>
+
+<table class="table table-bordered table-striped table-purple-stripes table-orange-header table-hover">
+    <thead>
+      <tr>
+        <th id="fontForCommon">News</th>
+      </tr>
+    </thead>
+    <tbody id="links-table-body">
+      <!-- Links will go here -->
+    </tbody>
+  </table>
+
+  <script>
+    async function fetchAndDisplayLinks() {
+      const response = await fetch("https://spectacularartistsoftexas-1.onrender.com/news/tc");
+      const htmlStrings = await response.json(); // This is the array of divs
+
+      const hrefs = [];
+
+      htmlStrings.forEach(html => {
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = html;
+
+  const links = tempDiv.querySelectorAll("a[href]");
+  links.forEach(link => {
+    const href = link.getAttribute("href");
+    const fullUrl = href.startsWith("http") ? href : `https://techcrunch.com${href}`;
+    hrefs.push(fullUrl);
+  });
+});
+
+      // Now add to the table
+      const tableBody = document.getElementById("links-table-body");
+      hrefs.forEach(href => {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+
+        const a = document.createElement("a");
+        a.href = href;
+        a.textContent = href;
+        a.target = "_blank";
+
+        cell.appendChild(a);
+        row.appendChild(cell);
+        tableBody.appendChild(row);
+      });
+    }
+
+    fetchAndDisplayLinks();
+  </script>
+
 <h1 id="fontForCommon">Song By The Website Creator</h1>
 <div class="video-cotainer">
 <iframe width="100%" height="315"
@@ -28,6 +81,8 @@
     allowfullscreen>
 </iframe>
 </div>
+
+
 
 <h1 id="fontForCommon">IT Consulting Companies</h1>
 <div class="table-responsive">

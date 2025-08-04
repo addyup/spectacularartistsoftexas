@@ -22,7 +22,6 @@ public class NewsScraper {
 private static Document doc;
 
      @GetMapping("/tc")
-     @CrossOrigin(origins = "*")
   public List<String> soundStacksHealth() throws Exception{
      doc = Jsoup.connect("https://techcrunch.com/").get();
      
@@ -41,10 +40,7 @@ private static Document doc;
             }
         }
 
-        // Print results
-        for (String element : elementStrings) {
-            System.out.println("Element: " + element);
-        }
+        
     
     return elementStrings;
       }
