@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="s.css">
+</head>
+<body>
+    <table class="table table-bordered table-striped table-purple-stripes table-orange-header table-hover">
+    <thead>
+      <tr>
+        <th id="fontForCommon">News</th>
+      </tr>
+    </thead>
+    <tbody id="links-table-body">
+      <!-- Links will go here -->
+    </tbody>
+  </table>
+
+  <script>
+    async function fetchAndDisplayLinks() {
+      const response = await fetch("https://spectacularartistsoftexas-1.onrender.com/news/tc");
+      const htmlStrings = await response.json(); // This is the array of divs
+
+      const hrefs = [];
+
+      htmlStrings.forEach(html => {
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = html;
+
+  const links = tempDiv.querySelectorAll("a[href]");
+  links.forEach(link => {
+    const href = link.getAttribute("href");
+    const fullUrl = href.startsWith("http") ? href : `https://techcrunch.com${href}`;
+    hrefs.push(fullUrl);
+  });
+});
+
+      // Now add to the table
+      const tableBody = document.getElementById("links-table-body");
+      hrefs.forEach(href => {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+
+        const a = document.createElement("a");
+        a.href = href;
+        a.textContent = href;
+        a.target = "_blank";
+
+        cell.appendChild(a);
+        row.appendChild(cell);
+        tableBody.appendChild(row);
+      });
+    }
+
+    fetchAndDisplayLinks();
+  </script>
+</body>
+</html>
