@@ -180,4 +180,11 @@ h1 {
   background-color: #988ed4;
   color: #8bb5e6;
 }
-  
+a.text-warning {
+  color: #ffc107; /* Bootstrap's yellow warning color */
+  text-decoration: none;
+}
+
+a.text-warning:hover {
+  text-decoration: underline;
+}

@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="s.css">
 </head>
-<body>
+<body style="background-color: black; color: white;">
     <table class="table table-bordered table-striped table-purple-stripes table-orange-header table-hover">
     <thead>
       <tr>
@@ -47,6 +47,7 @@
         a.href = href;
         a.textContent = href;
         a.target = "_blank";
+        a.className = "text-warning";
 
         cell.appendChild(a);
         row.appendChild(cell);
