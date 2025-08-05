@@ -158,26 +158,27 @@ h1 {
     }
 
     .table-purple-stripes thead th:nth-of-type(odd) {
-  background-color: #f3e8ff; /* Light lavender/purple */
+  background-color: #8eb1d4; /* Light lavender/purple */
 }
 
 .table-purple-stripes thead th {
-    background-color: #e0c9ff;
+    background-color: #8eb1d4;
   color: #ff4d4d; /* Light orange text */
 }
 
 .table-purple-stripes thead th:hover {
-  background-color: #e0c9ff; /* Slightly darker purple on hover */
+  background-color: #8eb1d4; /* Slightly darker purple on hover */
   color: #ff4d4d; /* Maintain light orange on hover */
 }
 
 .table-orange-header thead th {
-  background-color: #8479cb;
+  background-color: #988ed4;
   color: #ffffff;
 }
 
 .table-orange-header thead th:hover {
-  background-color: #988ed4;
+  background-color: #8eb1d4;
+  
   color: #8bb5e6;
 }
 a.text-warning {
@@ -188,3 +189,52 @@ a.text-warning {
 a.text-warning:hover {
   text-decoration: underline;
 }
+ body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+    }
+
+    .sidenav {
+      width: 250px;
+      background-color: #988ed4;
+      color: white;
+      height: 100vh;
+      padding-top: 20px;
+      position: fixed;
+    }
+
+    .sidenav a {
+      padding: 15px 20px;
+      display: block;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .sidenav a:hover {
+      background-color: #455a64;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      flex: 1;
+    }
+
+    .material-icons {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .sidenav {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+    }
