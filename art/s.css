@@ -193,6 +193,7 @@ a.text-warning:hover {
       margin: 0;
       font-family: Arial, sans-serif;
       transition: margin-left 0.3s;
+      background-color: rgba(95, 55, 55, 0.221);
     }
 
     .sidenav {
