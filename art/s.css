@@ -192,49 +192,70 @@ a.text-warning:hover {
  body {
       margin: 0;
       font-family: Arial, sans-serif;
-      display: flex;
+      transition: margin-left 0.3s;
     }
 
     .sidenav {
-      width: 250px;
-      background-color: #988ed4;
-      color: white;
       height: 100vh;
-      padding-top: 20px;
+      width: 250px;
       position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #24431d;
+      overflow-x: hidden;
+      transition: width 0.3s;
+      white-space: nowrap;
+    }
+
+    .sidenav.collapsed {
+      width: 60px;
+    }
+
+    .sidenav .toggle-button {
+      background-color: #333;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: left;
     }
 
     .sidenav a {
-      padding: 15px 20px;
-      display: block;
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
       color: white;
       text-decoration: none;
       transition: background 0.3s;
     }
 
     .sidenav a:hover {
-      background-color: #455a64;
+      background-color: #575757;
+    }
+
+    .sidenav i.material-icons {
+      margin-right: 16px;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .sidenav.collapsed a span {
+      display: none;
+    }
+
+    .sidenav.collapsed i.material-icons {
+      margin-right: 0;
     }
 
     .main-content {
-      margin-left: 250px;
+      margin-left: 60px; /* Start with sidebar collapsed */
       padding: 20px;
-      flex: 1;
+      transition: margin-left 0.3s;
     }
 
-    .material-icons {
-      vertical-align: middle;
-      margin-right: 10px;
+    .sidenav:not(.collapsed) + .main-content {
+      margin-left: 250px;
     }
-
-    @media screen and (max-width: 768px) {
-      .sidenav {
-        width: 100%;
-        height: auto;
-        position: relative;
-      }
-
-      .main-content {
-        margin-left: 0;
-      }
-    }
+ 
