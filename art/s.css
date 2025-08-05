@@ -127,7 +127,7 @@ h1 {
     height: auto;
     margin: 10px 0;
   }
-  div.health #fontForCommon {
+  div.concept #fontForCommon {
     font-family: fantasy;
     color: red;
   }
