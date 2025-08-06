@@ -259,4 +259,7 @@ a.text-warning:hover {
     .sidenav:not(.collapsed) + .main-content {
       margin-left: 250px;
     }
- 
+    .hidden {
+    display: none !important;
+  }
+

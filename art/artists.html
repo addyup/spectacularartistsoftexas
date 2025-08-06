@@ -38,12 +38,10 @@
   <div class="main-content">
 
 
-<div style="position: relative; display: flex; justify-content: center; align-items: center; background-color: #818028c2;">
+<div id="logo-audio-wrapper" style="position: relative; display: flex; justify-content: center; align-items: center; background-color: #818028c2;">
   <img src="SVG-01.svg" id="corner-logo" alt="Logo">
 
- 
-  <audio controls style="position: absolute; top: 0; left: 0; z-index: 10; margin-top: 10px; margin-left: 9px;">
-     
+  <audio id="logo-audio" controls style="position: absolute; top: 0; left: 0; z-index: 10; margin-top: 10px; margin-left: 9px;">
     <source src="MoneyAndPower5.wav" type="audio/wav">
     Your browser does not support the audio element.
   </audio>
@@ -841,6 +839,24 @@ document.getElementById("restartBtn").addEventListener("click", startGame);
       sidebar.classList.toggle('collapsed');
     }
   </script>
+  <script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const logoAudioWrapper = document.getElementById("logo-audio-wrapper");
+
+    // Toggle the sidebar's "collapsed" class
+    sidebar.classList.toggle("collapsed");
+
+    // Hide or show the logo + audio based on sidebar state
+    if (!sidebar.classList.contains("collapsed")) {
+      // Sidebar is open → hide logo and audio
+      logoAudioWrapper.classList.add("hidden");
+    } else {
+      // Sidebar is collapsed → show them
+      logoAudioWrapper.classList.remove("hidden");
+    }
+  }
+</script>
     </body> 
     
     </html>
