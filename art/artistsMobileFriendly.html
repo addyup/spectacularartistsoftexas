@@ -30,7 +30,51 @@
       <span>Ellums Underground</span>
     </a>
   </div>
+<script src="artistsMobileFriendly.js"></script>
 
-    <div class="main-content"></div>
+
+
+    <div class="main-content">
+
+        <h1>🎵 Match the Note</h1>
+  <p>Listen to the note and tap the correct button!</p>
+  <button onclick="playTargetNote()">🔊 Play Note</button>
+
+  <div class="note-buttons">
+    <button onclick="guessNote('C')">C</button>
+    <button onclick="guessNote('D')">D</button>
+    <button onclick="guessNote('E')">E</button>
+    <button onclick="guessNote('F')">F</button>
+    <button onclick="guessNote('G')">G</button>
+    <button onclick="guessNote('A')">A</button>
+    <button onclick="guessNote('B')">B</button>
+  </div>
+
+  <div id="status"></div>
+
+
+    </div>
+<script src="musicGames.js"></script>
+
+<div></div>
+
+
+
+<h1 style="font-family:fantasy;">Music Rhythm Game TBD</h1>
+  <div id="game">
+    <div class="lane" data-key="65">A</div>
+    <div class="lane" data-key="83">S</div>
+    <div class="lane" data-key="68">D</div>
+    <div class="lane" data-key="70">F</div>
+  </div>
+  <div id="mobile-controls">
+  <button data-key="65">A</button>
+  <button data-key="83">S</button>
+  <button data-key="68">D</button>
+  <button data-key="70">F</button>
+</div>
+
+  <div id="score">Score: 0</div>
+<script src="game.js"></script>
 </body>
 </html>
