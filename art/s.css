@@ -394,3 +394,20 @@ body {
       margin-top: 10px;
     }
   }
+
+  .audio-control {
+    position: absolute;
+    top: 10px;
+    left: 9px;
+    z-index: 10;
+  }
+
+  /* Responsive for small screens */
+  @media (max-width: 600px) {
+    .audio-control {
+      position: static;
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
